@@ -1,0 +1,62 @@
+
+sdf
+sdf
+sdf
+sdf
+version 1
+mama
+package main
+
+import (
+	"launchpad.net/mgo"
+	"qbox.us/log"
+	qmgo "qbox.us/mgo"
+)
+
+type M map[string]interface{}
+
+
+type fsizeHashRet struct {
+	Fsize int64 `json:"fsize" bson:"fsize"`
+	Hash string `json:"hash" bson:"hash"`
+}
+
+func main() {
+	session, err := mgo.Dial("mongodb://localhost")
+	if err != nil {
+		log.Warn(err)
+		return
+	}
+	defer session.Close()
+	
+	session.SetSyncTimeout(1E9)
+	qmgo.SetMode(session, "strong", true)
+
+	db := session.DB("qbox_rs")
+	c := db.C("rs")
+	Uid := 260637568
+	tbl := "bucket"
+	key := "haha"
+	doc := M{}
+	doc["owner"] = Uid
+	doc["tbl"] = tbl
+	doc["key"] = key
+	doc["mimeType"] = "jsonv2"
+	
+	var result fsizeHashRet
+	change := mgo.Change{Update: doc, Upsert: true, New: true}
+	err = c.Find(M{"owner": Uid, "tbl": tbl, "key": key}).Modify(change, &result)
+	if err != nil {
+		log.Warn(err)
+	}
+	return
+}haha
+haha
+haha
+haha
+weibo
+woainilaopo
+haha
+2
+3
+weibo
