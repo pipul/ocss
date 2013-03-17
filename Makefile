@@ -1,11 +1,4 @@
 all:
-	echo haha >> env.sh
-	echo haha >> test/demo.go
-	git add .
-	git commit -m "update"
-	git push --progress origin feature/b_fd_2
-add:
-	echo haha >> env.sh
-	echo haha >> test/demo.go
-	git add .
-	git commit -m "update"
+	git pack-objects --all-progress-implied --revs --stdout --delta-base-offset --progress < refs 1>/dev/zero
+thin:
+	git pack-objects --all-progress-implied --revs --thin --stdout --delta-base-offset --progress < refs 1>/dev/zero
