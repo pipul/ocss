@@ -1,2 +1,2 @@
-export GOPATH=$GOPATH:$PIPULROOT/cstools
-export PATH=$PATH:$PIPULROOT/cstools/bin
+export GOPATH=$GOPATH:$PIPULROOT/OCSS
+export PATH=$PATH:$PIPULROOT/OCSS/bin
